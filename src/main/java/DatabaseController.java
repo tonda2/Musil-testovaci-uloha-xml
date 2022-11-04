@@ -60,17 +60,22 @@ public class DatabaseController {
 
     /**
      * Prints all rows of given database
-     * @param tableName table to be printed
      * @throws SQLException if a database access error occurs
      */
-    void print (String tableName) throws SQLException {
+    void print () throws SQLException {
         Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(
-                tableName.equals("village") ? selectAllVillage
-                                            : selectAllVillagePart);
+        ResultSet resultSet = statement.executeQuery(selectAllVillage);
+        Statement statement2 = connection.createStatement();
+        ResultSet resultSet2 = statement2.executeQuery(selectAllVillagePart);
 
         while (resultSet.next()) {
-            System.out.println(resultSet.getInt(1) + resultSet.getString(2));
+            System.out.println(resultSet.getInt(1) + ": " + resultSet.getString(2));
+        }
+
+        System.out.println("----");
+
+        while (resultSet2.next()) {
+            System.out.println(resultSet2.getInt(1) + ": " + resultSet2.getString(2) + ", " + resultSet2.getInt(3));
         }
     }
 }

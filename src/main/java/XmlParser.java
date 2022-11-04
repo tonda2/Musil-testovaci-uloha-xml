@@ -68,4 +68,14 @@ public class XmlParser {
             );
         }
     }
+
+    /**
+     * Wrapper for two separate parsing methods
+     * @param path path to xml file
+     * @throws Exception passed from called methods
+     */
+    void parse (String path) throws Exception {
+        this.parseVillage(path);
+        this.parseVillagePart(path);
+    }
 }
